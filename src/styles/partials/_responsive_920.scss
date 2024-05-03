@@ -1,0 +1,28 @@
+@media (min-width: 920px) {
+
+    .hero {
+      height: 400px;
+      background-position: 0% 33%;
+
+      .hero-content {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 300px;
+        margin: 2rem;
+
+        .subtitle {
+            font-size: 1.5rem;
+            }
+        
+        .text {
+            font-size: 1.2rem;
+            }
+      }
+    } 
+
+    .features {
+        flex-direction: row;
+      }
+  }
+  

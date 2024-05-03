@@ -1,0 +1,31 @@
+.edit_title {
+    color: white;
+}
+
+.edit_input_wrapper {
+    margin: 5px;
+
+    label {
+        color: white;
+    }
+
+    input {
+        height: 20px;
+        width: 100px;
+    }
+} 
+
+.edit_button_wrapper {
+    margin-top: 20px;
+
+    .edit_button {
+        width: 100px;
+        margin: 0px 5px;
+        padding: 10px;
+        border-radius: 2px;
+        background-color: #00bc77;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+}
