@@ -68,8 +68,6 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
       responses:
         '200':
           description: User profile retrieved successully
@@ -106,10 +104,6 @@ paths:
         '500':
           description: Internal Server Error
 
-
-
-
-
   /user/transaction:
     get:
       security:
@@ -118,47 +112,39 @@ paths:
         - Transaction Module
       summary: User Transaction API
       description: API for fetching user transactions
-      parameters:
-        - in: body
-          name: body
-          description: Login Payload
-          required: true
-          schema:
-            $ref: '#/definitions/Transaction'
       produces:
         - application/json
       responses:
         '200':
-          description: User transactions retrieved successully
+          description: User transactions retrieved successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/Transaction'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
 
-   /user/transaction/{id}:
-    post:
+  /user/transaction/{TransactionId}:
+    get:
       security:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: User Transaction API
-      description: API for add information transaction
+      summary: Add information to a transaction
+      description: API for adding information to a transaction
       parameters:
-        - in: body
-          name: body
-          description: Add information transaction
+        - in: path
+          name: TransactionId
+          description: Add information to transaction
           required: true
-          schema:
-            $ref: '#/definitions/AddInformationTransaction'
+          type: string
       produces:
         - application/json
       responses:
         '200':
-          description: Transaction information add successully
+          description: Transaction information added successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/Transaction'
         '400':
           description: Invalid Fields
         '500':
@@ -169,22 +155,27 @@ paths:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: User Transaction API
-      description: API for updating information transaction
+      summary: Update information in a transaction
+      description: API for updating information in a transaction
       parameters:
+        - in: path
+          name: TransactionId
+          description: Update information in transaction
+          required: true
+          type: string
         - in: body
           name: body
-          description: Update information transaction
+          description: Update information in transaction
           required: true
           schema:
-            $ref: '#/definitions/UpdateInformationTransaction'
+            $ref: '#/definitions/UpdateInfoTransaction'
       produces:
         - application/json
       responses:
         '200':
-          description: Information Transaction successully updated
+          description: Information in transaction successfully updated
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/Transaction'
         '400':
           description: Invalid Fields
         '500':
@@ -195,28 +186,31 @@ paths:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: User Transaction API
-      description: API for delete a information transaction
+      summary: Delete information in a transaction
+      description: API for deleting information in a transaction
       parameters:
+        - in: path
+          name: TransactionId
+          description: Delete information in transaction
+          required: true
+          type: string
         - in: body
           name: body
-          description: Delete information transaction
+          description: Update information in transaction after delete
           required: true
           schema:
-            $ref: '#/definitions/DeleteInformationTransaction'
+            $ref: '#/definitions/UpdateInfoTransaction'
       produces:
         - application/json
       responses:
         '200':
-          description: Information Transaction successully deleted
+          description: Information in transaction successfully deleted
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/Transaction'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-
-
 
 securityDefinitions:
   Bearer:
@@ -271,5 +265,36 @@ definitions:
   UserProfile:
     type: object
     properties:
-      userName:
+      userName:  
         type: string
+  Transaction:
+    type: object
+    properties:
+      UserId:
+        type: string
+      TransactionId: 
+        type: string
+      Date:
+        type: string
+      Description:
+        type: string
+      Amount:
+        type: number
+      Balance:
+        type: number
+  UpdateInfoTransaction:
+    type: object
+    properties:
+      transactionId:
+        type: string
+        description: ID de la transaction à update
+      updatedInfo:
+        type: object
+        description: Informations de la transaction après update
+      category:
+        type: string
+      note:
+        type: string
+    required:
+      - transactionId
+      - updatedInfo
