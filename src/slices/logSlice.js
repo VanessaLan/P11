@@ -57,7 +57,7 @@ const logSlice = createSlice({
         state.token = null;
         state.error = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(loginUser.fulfilled, (state) => {
         state.status = "fulfilled";
         state.login = true;
         state.token = localStorage.getItem("token");

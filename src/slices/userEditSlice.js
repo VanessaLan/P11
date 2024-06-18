@@ -41,7 +41,7 @@ const editSlice = createSlice({
       .addCase(editUser.pending, (state) => {
         state.status = "pending";
       })
-      .addCase(editUser.fulfilled, (state, action) => {
+      .addCase(editUser.fulfilled, (state) => {
         state.status = "fulfilled";
       })
       .addCase(editUser.rejected, (state) => {

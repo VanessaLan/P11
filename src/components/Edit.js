@@ -29,7 +29,6 @@ const Edit = ({ toggleSave, toggleCancel }) => {
           <input
             type="text"
             id="username"
-            // defaultValue={userName}
             onChange={(event) => setUserName(event.target.value)}
           />
         </div>

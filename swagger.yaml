@@ -110,7 +110,7 @@ paths:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: User Transaction API
+      summary: User Transactions API
       description: API for fetching user transactions
       produces:
         - application/json
@@ -124,17 +124,17 @@ paths:
         '500':
           description: Internal Server Error
 
-  /user/transaction/{TransactionId}:
+  /user/transaction/{id}:
     get:
       security:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: Add information to a transaction
+      summary: Specific user transaction by id API
       description: API for adding information to a transaction
       parameters:
         - in: path
-          name: TransactionId
+          name: id
           description: Add information to transaction
           required: true
           type: string
@@ -159,7 +159,7 @@ paths:
       description: API for updating information in a transaction
       parameters:
         - in: path
-          name: TransactionId
+          name: id
           description: Update information in transaction
           required: true
           type: string
@@ -190,7 +190,7 @@ paths:
       description: API for deleting information in a transaction
       parameters:
         - in: path
-          name: TransactionId
+          name: id
           description: Delete information in transaction
           required: true
           type: string
@@ -298,3 +298,4 @@ definitions:
     required:
       - transactionId
       - updatedInfo
+
