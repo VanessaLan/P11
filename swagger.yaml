@@ -130,14 +130,45 @@ paths:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: Specific user transaction by id API
+      summary: Specific user transaction by ID API
+      description: API for fetching specific user transaction by ID
+      parameters:
+        - in: path
+          name: id
+          description: id of the transaction to fetch
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction information retrieved successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+          
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Add information to transaction
       description: API for adding information to a transaction
       parameters:
         - in: path
           name: id
-          description: Add information to transaction
+          description: ID of the transaction to add information to
           required: true
           type: string
+        - in: body
+          name: body
+          description: Add information to transaction
+          required: true
+          schema:
+            $ref: '#/definitions/InfoTransaction'
       produces:
         - application/json
       responses:
@@ -160,7 +191,7 @@ paths:
       parameters:
         - in: path
           name: id
-          description: Update information in transaction
+          description: ID of the transaction to update information in
           required: true
           type: string
         - in: body
@@ -168,7 +199,7 @@ paths:
           description: Update information in transaction
           required: true
           schema:
-            $ref: '#/definitions/UpdateInfoTransaction'
+            $ref: '#/definitions/InfoTransaction'
       produces:
         - application/json
       responses:
@@ -191,15 +222,15 @@ paths:
       parameters:
         - in: path
           name: id
-          description: Delete information in transaction
+          description: ID of the transaction to delete information from
           required: true
           type: string
         - in: body
           name: body
-          description: Update information in transaction after delete
+          description: Delete information in transaction
           required: true
           schema:
-            $ref: '#/definitions/UpdateInfoTransaction'
+            $ref: '#/definitions/InfoTransaction'
       produces:
         - application/json
       responses:
@@ -272,30 +303,33 @@ definitions:
     properties:
       UserId:
         type: string
-      TransactionId: 
+        description: ID of the user
+      TransactionId:
         type: string
+        description: ID of the transaction
       Date:
         type: string
+        description: Date of the transaction
       Description:
         type: string
+        description: Description of the transaction
       Amount:
         type: number
+        description: Amount of the transaction
       Balance:
         type: number
-  UpdateInfoTransaction:
+        description: Balance after the transaction
+  InfoTransaction:
     type: object
     properties:
       transactionId:
         type: string
-        description: ID de la transaction à update
-      updatedInfo:
-        type: object
-        description: Informations de la transaction après update
+        description: ID of the transaction
       category:
         type: string
+        description: Category of the transaction
       note:
         type: string
+        description: Note associated with the transaction
     required:
       - transactionId
-      - updatedInfo
-
